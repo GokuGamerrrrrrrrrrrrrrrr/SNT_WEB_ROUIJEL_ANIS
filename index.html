@@ -17,13 +17,12 @@
             align-items: center;
             min-height: 100vh;
             box-sizing: border-box;
-            
-            /* Paramètres pour que le fond image s'étire parfaitement */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
             transition: background 0.4s ease;
+            background-color: #0b0e14;
         }
 
         /* BANDEAU VIDÉO PLEIN ÉCRAN */
@@ -33,9 +32,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -100; /* Reste derrière le texte */
-            object-fit: cover; /* S'étire sans déformer */
-            display: none; /* Masqué tant qu'on ne clique pas sur le bouton vidéo */
+            z-index: -100;
+            object-fit: cover;
+            display: none;
         }
 
         /* CONTENEUR PRINCIPAL */
@@ -43,8 +42,6 @@
             max-width: 1200px;
             width: 100%;
             text-align: center;
-            backdrop-filter
-            backdrop-filter: blur(0px);
             padding: 40px;
             border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -66,7 +63,7 @@
             font-size: 1.1rem;
         }
 
-        /* GRILLE DE MÉDIAS (4 EMPLACEMENTS) */
+        /* GRILLE DE MÉDIAS */
         .grille-medias {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -74,7 +71,6 @@
             margin-bottom: 40px; 
         }
 
-        /* CARTES DE LA GALERIE */
         .bloc-element {
             background: rgba(255, 255, 255, 0.03);
             border-radius: 12px;
@@ -90,7 +86,6 @@
             box-shadow: 0 10px 20px rgba(56, 189, 248, 0.15);
         }
 
-        /* Ajustement des images et vidéos */
         .media-item {
             width: 100%;
             height: 200px;
@@ -113,7 +108,6 @@
             margin: 0 0 10px 0;
         }
 
-        /* BOUTONS FOND D'ÉCRAN */
         .btn-fond {
             padding: 10px 14px;
             cursor: pointer;
@@ -136,63 +130,54 @@
             margin-top: 30px;
             padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
         }
+        
+        .conteneur-boutons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
         .btn-action {
             padding: 12px 24px;
-            margin: 5px;
             cursor: pointer;
             background: #1e293b;
             color: white;
             border: 1px solid rgba(255,255,255,0.2);
             border-radius: 8px;
             font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        .btn-action:hover {
+            background: #334155;
         }
 
         #texte {
             font-size: 1.1rem;
             color: #94a3b8;
-            margin: 25px 0 10px 0;
-        }
-
-        /* TEXTE MULTICOLORE ANIMÉ */
-        .texte-multicolore {
-            font-size: 2.2rem;
-            font-weight: 800;
-            background: linear-gradient(to right, #ff4757, #ffa502, #2ed573, #1e90ff, #9b59b6, #ff4757);
-            background-size: 400% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: arcenciel 4s linear infinite;
-            margin: 25px 0;
-        }
-
-        @keyframes arcenciel {
-            0% { background-position: 0% center; }
-            100% { background-position: 400% center; }
+            margin: 15px 0 0 0;
         }
     </style>
 </head>
-<!-- LE FOND DE LA BALISE EST DÉFINI COMME TOTALEMENT TRANSPARENT ICI -->
 <body style="background-color: rgba(255, 255, 255, 0) !important;">
 
-    <!-- LA BALISE VIDÉO UNIQUE POUR LE FOND D'ÉCRAN LIVE -->
-    <video id="videoFond" autoplay loop muted playsinline></video>
+    <video id="videoFond" autoplay loop playsinline></video>
 
-    <!-- LA MUSIQUE DE FOND CACHÉE SANS LECTEUR GRIS -->
-    <audio id="musiqueFond" loop>
-        <source src="musique.mp3" type="audio/mpeg">
+</audio>
+
     </audio>
 
-    <!-- PANNEAU CENTRAL -->
     <div class="wrapper">
-
         <h1>Archives de la NASA</h1>
         <p class="avertissement">⚠️ Certaines images peuvent être sensibles, déconseillé aux moins de 15 ans !</p>
         
-        <!-- LES 4 EMPLACEMENTS DE MÉDIAS -->
         <div class="grille-medias">
-            
-            <!-- EMPLACEMENT 1 : IMAGE 1 -->
+            <!-- Emplacement 1 -->
             <div class="bloc-element">
                 <img class="media-item" src="image.jpg" alt="Archive 01">
                 <div class="card-body">
@@ -200,10 +185,9 @@
                     <button class="btn-fond" onclick="mettreImageEnFond('image.jpg')">Utiliser comme fond</button>
                 </div>
             </div>
-
-            <!-- EMPLACEMENT 2 : VIDÉO 1 -->
+            <!-- Emplacement 2 -->
             <div class="bloc-element">
-                <video class="media-item" autoplay loop muted playsinline>
+                <video class="media-item" autoplay loop playsinline>
                     <source src="video.mp4" type="video/mp4">
                 </video>
                 <div class="card-body">
@@ -211,8 +195,7 @@
                     <button class="btn-fond" onclick="mettreVideoEnFond('video.mp4')">Utiliser comme fond</button>
                 </div>
             </div>
-
-            <!-- EMPLACEMENT 3 : IMAGE 2 -->
+            <!-- Emplacement 3 -->
             <div class="bloc-element">
                 <img class="media-item" src="image2.jpg" alt="Archive 02">
                 <div class="card-body">
@@ -220,10 +203,9 @@
                     <button class="btn-fond" onclick="mettreImageEnFond('image2.jpg')">Utiliser comme fond</button>
                 </div>
             </div>
-
-            <!-- EMPLACEMENT 4 : VIDÉO 2 -->
+            <!-- Emplacement 4 -->
             <div class="bloc-element">
-                <video class="media-item" autoplay loop muted playsinline>
+                <video class="media-item" autoplay loop playsinline>
                     <source src="video2.mp4" type="video/mp4">
                 </video>
                 <div class="card-body">
@@ -231,57 +213,49 @@
                     <button class="btn-fond" onclick="mettreVideoEnFond('video2.mp4')">Utiliser comme fond</button>
                 </div>
             </div>
-
         </div>
 
-        <!-- ZONE ACTIONS ET FORMULAIRE -->
+        <!-- ZONE ACTIONS MODIFIÉE -->
         <div class="zone-actions">
-            <button class="btn-action" onclick="alert('Merci de patienter, nous collectons votre adresse IP')">Présentation</button>
-            <button class="btn-action" onclick="alert('Merci de patienter, nous injectons le virus ALPHA SCP')">Voir les mèmes</button>
+            <div class="conteneur-boutons">
+                <button class="btn-action" onclick="alert('Merci de patienter, nous collectons votre adresse IP')">Présentation</button>
+                <button class="btn-action" onclick="alert('Merci de patienter, nous injectons le virus ALPHA SCP')">Voir les mèmes</button>
+            </div>
             
-            <p id="texte">Soutenez les petits créateurs !</p>
-            
-            <h1 class="texte-multicolore">Devenez ambassadeur avec le formulaire ci-dessous</h1>
-            
+            <!-- VOTRE BOUTON PERSONNALISÉ ICI -->
             <button class="btn-action" style="background: #38bdf8; color: #0b0e14;" onclick="changerTexte()">Formulaire</button>
+            
+            <p id="texte">Chargement prêt</p>
         </div>
-
     </div>
 
-<script>
-function changerTexte() {
-    document.getElementById("texte").innerHTML = "🚀 Merci de votre soutien de 10$, cela m'aide beaucoup !";
-}
+    <script>
+        const videoFond = document.getElementById('videoFond');
 
-// ACTION : PASSER UNE IMAGE EN FOND D'ÉCRAN GLOBAL
-function mettreImageEnFond(lienImage) {
-    var vid = document.getElementById("videoFond");
-    vid.style.display = "none"; // Masque totalement la vidéo
-    vid.pause(); // Coupe la lecture de la vidéo en tâche de fond
-    
-    // Supprime la transparence forcée pour laisser place à l'image chargée
-    document.body.style.setProperty("background-color", "transparent", "important");
-    document.body.style.backgroundImage = "url('" + lienImage + "')"; 
-}
+        function mettreImageEnFond(nomImage) {
+            videoFond.style.display = 'none';
+            videoFond.pause();
+            document.body.style.backgroundImage = `url('${nomImage}')`;
+        }
 
-// ACTION : PASSER UNE VIDÉO EN FOND D'ÉCRAN GLOBAL
-function mettreVideoEnFond(lienVideo) {
-    document.body.style.backgroundImage = "none"; // Enlevez l'image de fond
-    
-    var vid = document.getElementById("videoFond");
-    vid.src = lienVideo; // Assigne le nouveau fichier vidéo
-    vid.style.display = "block"; // Affiche la vidéo plein écran
-    vid.play(); // Force la lecture
-}
+        function mettreVideoEnFond(nomVideo) {
+            document.body.style.backgroundImage = 'none';
+            videoFond.src = nomVideo;
+            videoFond.style.display = 'block';
+            videoFond.load();
+            videoFond.play().catch(e => console.log(e));
+        }
 
-// GESTION DU SON AU CLIC GENERAL
-document.addEventListener('click', function() {
-    var audio = document.getElementById('musiqueFond');
-    if (audio.paused) {
-        audio.play().catch(function(e) { console.log("Lecture audio bloquée."); });
-    }
-}, { once: true });
-</script>
+        // LA FONCTION DU BOUTON FORMULAIRE ICI
+        function changerTexte() {
+            const paragrapheTexte = document.getElementById('texte');
+            paragrapheTexte.innerHTML = "🚀 Connexion établie... Redirection vers la page 2 en cours !";
+            paragrapheTexte.style.color = "#38bdf8";
 
+            setTimeout(function() {
+                window.location.href = "page2.html";
+            }, 1500); 
+        }
+    </script>
 </body>
 </html>
